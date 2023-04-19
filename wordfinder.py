@@ -4,16 +4,16 @@ class WordFinder:
     """Word Finder: finds random words from a dictionary."""
     def __init__(self,file_path):
         """creates a list of words from a text file"""
-        print('i am inside my parent')
         file = open(file_path)
         self.list_of_words = self.read_file(file)
         print(f"{len(self.list_of_words)} words read")
 
+    def __repr__(self):
+        return f"<{self.__class__.__name__} len(words)={len(self.list_of_words)}>"
+        # return f"<WordFinder list_of_words contains {len(self.list_of_words)} words"
+
     def read_file(self, file):
         return [line.strip() for line in file]
-
-    def __repr__(self):
-        return f"<WordFinder list_of_words contains {len(self.list_of_words)} words"
 
     def random(self):
         """returns a random word from the saved list of words"""
@@ -28,6 +28,7 @@ class SpecialWordFinder(WordFinder):
 
     def read_file(self, file):
         return [line for line in super().read_file(file) if not line.startswith("#") and line != '']
+
 
 
 
